@@ -1,0 +1,33 @@
+body{
+    font-size: 12px;
+}
+.free{
+    width: 283px;
+    border: 1px solid #c1c1c1;
+    border-top: 0px;
+    background: #f9f9f9  no-repeat center top;
+}
+.overStyle{
+    background-image: url("");
+    color: #489379;
+    width: 102px;
+    height: 24px;
+    text-align: center;
+    border: 0px;
+    font-weight: bold;
+    clear: both;
+    cursor: pointer;
+    margin: 0 0 0 96px;
+}
+.outStyle{
+    background-image: url("");
+    color: #489379;
+    width: 102px;
+    height: 24px;
+    text-align: center;
+    border: 0px;
+    font-weight: bold;
+    clear: both;
+    cursor: pointer;
+    margin: 0 0 0 96px;
+}
