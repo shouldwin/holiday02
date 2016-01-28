@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title></title>
     <script type="text/javascript">
+        var myform=document.getElementById("myform");
+        var email = document.getElementById("email");
         function checkForm(form){
             var checkForms =new Array("email","pwd");
             for(var i=0;i<checkForms.length;i++){
@@ -14,9 +16,12 @@
                 }
             }
             var email = form.email;
-            var atIndex = form.value.indexOf("@");
-            var doIndex = form.value.indexOf(".");
-
+            var a = form.value;
+            alert(a);
+            var atIndex = email.value.indexOf("@",0);
+            alert("aaavv");
+            var doIndex = form.value.indexOf(".",0);
+            alert("aaa");
             if(atIndex == -1 || doIndex == -1){
                 alert("邮箱地址不正确！请重新输入");
                 email.focus();
@@ -29,7 +34,7 @@
 </head>
 <body>
     <form name="myform" id="myform" action="" method="get" onsubmit="checkForm(this)" >
-        <table bgcolor="#ffcc66" width="100" align="center" style="border: 1px solid" bordercolor="#0033cc" cellpadding="1" cellspacing="1">
+        <table bgcolor="#ffcc66" width="400" align="center" style="border: 1px solid #0033cc" cellpadding="5" cellspacing="1">
             <caption align="center">
                 <h3>邮箱登陆</h3>
             </caption>
@@ -40,7 +45,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">密码是：</td>
+                <td align="right">密码：</td>
                 <td>
                     <input name="pwd" type="password" id="pwd" title="密码">
                 </td>
