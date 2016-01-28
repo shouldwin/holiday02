@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body bgcolor="#ffcc66">
+    <font style="font-size: 12px; line-height: 18px"></font>
+    <h4>字符串的操作</h4>
+    <script type="text/javascript">
+        var str1="javaScript入门到精通";
+        var str2=new String("javaScript");
+        /*获取字符串长度*/
+        document.write("\""+str1+"\"包含"+str1.length+"个汉字");
+        document.write("<br>\""+str2+"\"+包含"+str2.length+"英文字符<br>");
+
+        var n=0;
+        /*获取位置上的某个字符*/
+        document.write("\""+str1+"\"第"+n+"个字符是："+str1.charAt(n)+"<br>");
+        document.write("\""+str2+"\"第"+1+"个字符是："+str2.charAt(1)+"<br>");
+        document.write("\""+str1+"\"第"+n+"个字符的Unicode是："+str1.charCodeAt(n)+"<br>");
+
+        /*获取字符串出现的位置*/
+        document.write("str1.indexOf('java',0)的结果是："+str1.indexOf("java",0)+"<br>");
+        document.write("str2.indexOf('print',3)的结果是："+str2.indexOf("print",3)+"<br>");
+
+        document.write("str1.lastIndexOf('java')的结果是："+str1.lastIndexOf("java")+"<br>");
+        document.write("str2.lastIndexOf('print')的结果是："+str2.lastIndexOf("print")+"<br>");
+
+        /*截取字符串*/
+        document.write("str1.substring(2,5)的结果为："+str1.substring(2,5)+"<br>");
+        document.write("str2.substring(2,8)的结果为："+str2.substring(2,8)+"<br>");
+
+        document.write("str1.substr(2,5)的结果为："+str1.substr(2,5)+"<br>");
+        document.write("str2.substr(2,8)的结果为："+str1.substr(2,8)+"<br>");
+
+        /*转换为小写*/
+        document.write("str1.toLowerCase()的结果为："+str1.toLowerCase()+"<br>");
+        document.write("str2.toLowerCase()的结果为："+str2.toLowerCase()+"<br>");
+
+        /*转换为大写*/
+        document.write("str1.toUpperCase()的结果为："+str1.toUpperCase()+"<br>");
+        document.write("str2.toUpperCase()的结果为："+str2.toUpperCase()+"<br>");
+    </script>
+
+</body>
+</html>
