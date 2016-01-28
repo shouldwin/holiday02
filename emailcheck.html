@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function checkForm(form){
+            var checkForms =new Array("email","pwd");
+            for(var i=0;i<checkForms.length;i++){
+                if(form.elements[checkForms[i]].value==""){
+                    alert("请输入\""+form.elements[checkForms[i]].title+"\"!");
+                    form.elements[checkForms[i]].focus();
+                    return false;
+                }
+            }
+            var email = form.email;
+            var atIndex = form.value.indexOf("@");
+            var doIndex = form.value.indexOf(".");
+
+            if(atIndex == -1 || doIndex == -1){
+                alert("邮箱地址不正确！请重新输入");
+                email.focus();
+                email.select();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="myform" id="myform" action="" method="get" onsubmit="checkForm(this)" >
+        <table bgcolor="#ffcc66" width="100" align="center" style="border: 1px solid" bordercolor="#0033cc" cellpadding="1" cellspacing="1">
+            <caption align="center">
+                <h3>邮箱登陆</h3>
+            </caption>
+            <tr>
+                <td align="right">邮箱：</td>
+                <td>
+                    <input type="text" name="email" id="email" title="邮箱"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">密码是：</td>
+                <td>
+                    <input name="pwd" type="password" id="pwd" title="密码">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <input type="submit" name="submit" id="submit" value="提交">
+                    <input type="reset" name="reset" id="reset" value="重置">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+<!--
+<input type="email">-->
