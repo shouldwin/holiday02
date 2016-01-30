@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var undefs = [1,1,];
+        alert(undefs.length);             //2
+        alert(undefs[0]+"  "+undefs[1]+" "+undefs[2]);    //1  1  undefined
+
+        /*foreach方法*/
+        var data = [1,2,3,4,5];
+        var s = 0;
+        data.forEach(function (x) {
+            s +=x*x;
+        });
+        alert(s);             //55(1+4+9+16+25)
+
+        /*九九乘法表*/
+        var table = new Array(10);
+        for(var i=0;i<table.length;i++){
+            table[i] = new Array(10);
+        }
+        for(var row = 0;row<table.length;row++){
+            for(var col = 0;col<table[row].length;col++){
+                table[row][col] = row*col;
+            }
+        }
+        var product = table[5][7];      //35(5*7)
+        alert(product);
+
+        /*join方法*/
+        var a = [1,2,3];
+        alert(a.join());         //默认，
+        alert(a.join(" "));      //1 2 3
+        alert(a.join(""));      //123
+        alert(a.join("-"));    //1-2-3
+
+        /* sort */
+        var a = ["Dog","ant","bug","Cat"];
+        a.sort();             //cat dog ant bug  区分大小写
+        a.sort(function(s,t){       //不区分大小写
+            var a = s.toLowerCase();
+            var b = t.toLowerCase();
+            if(a<b){
+                return -1;
+            }
+            if(a>b){
+                return 1;
+            }
+            return 0;
+        });               //ant bug cat dog
+
+        /* concat */
+        var a = [1,2,3];
+        a.concat([5,[6,7]]);       //[1,2,3,5,[6,7]]
+
+        /* slice*/
+        var a = [1,2,3,4,5,6];
+        a.slice(0,3);  // [1,2,3]  从第一个开始数三个即 0,1,2
+        a.slice(3);    //[4,5,6]   开始位置到数组结尾的所有元素
+        a.slice(1,-1);       // [2,3,4,5] 负数为相对于最后一个元素的位置
+        a.slice(-3,-2);
+
+        /* splice */
+        var a = [1,2,3,4,5,6,7,8];/*删除*/
+        a.splice(4);  //[5,6,7,8]  a = [1,2,3,4]
+        a.splice(1,2);  //[2,3]    a = [1,4]
+        a.splice(1,1);    //[4]    a = [1]
+
+        var a = [1,2,3,4,5];
+        a.splice(2,0,'a','b');   // []   a = [1,2,'a','b',3,4,5]
+        a.splice(2,2,[1,2],3);  //  ['a','b']  a = [1,2,[1,2],3,3,4,5]
+
+        /*push pop*/
+        var stack = [];
+        alert(stack.push(1,2));    // 2
+        stack.pop();  //删除最后一个元素
+
+        /*unshift  shift*/
+        var a=[];
+        a.unshift(1);    //a = [1]
+        a.shift();       //a = []
+        a.unshift(3,[4,5]);    //a = [3,[4,5]]
+        a.shift();        //a = [[4,5]]
+
+        /*toString  toLocaleString*/
+        [1,2,3].toString();
+        ["a","b","c"].toString();
+
+        /*forEach*/
+        var data = [1,2,3,4,5];
+        var sum = 0;
+        data.forEach(function(value){
+            sum += value;
+        });
+        //  sum = 15
+        data.forEach(function(v,i,a){
+            a[i] = v+1;
+        });
+        //  data  =[2,3,4,5,6]
+
+        /*报出异常，提前终止*/
+        function foreach(a,f,t){
+            try{
+                a.forEach(f,t);
+            }catch(e){
+                if(e === foreach.break)
+                return;
+                else
+                throw e;
+            }
+        }
+        foreach.break = new Error("stopIteration");
+
+        /* map */
+        a = [1,2,3];
+        b = a.map(function(x){
+            return x*x;
+        })      //1 4 9
+
+        /*filter*/
+
+    </script>
+</body>
+</html>
