@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        function isArrayLike(o){
+            if(o                                          //o非null，undefined等
+                    &&typeof o==="object" &&            //o为对象
+                    isFinite(o.length) &&
+                            o.length>=0 &&
+                            o.length===Math.floor(o.length) &&
+                            o.length <4294967296)
+                return true;                            //o.length有限数值，非负值，整数，<2^32
+            else
+                return false;
+        }
+    </script>
+</body>
+</html>
