@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*对象直接量*/
+        var empty ={};
+        var point = {x:0,y:0};
+        var point2 = {x:point.x,y:point.y+1};
+        var book = {
+            "main title" : "Javascript",
+            'sub-title' : "the defined guide",         //属性名中可以有连字符，空格；必须用字符串表示
+            "for" : "all adudiences",                  //for为保留字。所以必须用引号
+            author:{                                //属性名为一个对象
+                firstname : "David",
+                surname :　"Flanagan"            //5中，对象直接量中的最后一个属性后的逗号将忽略
+            }
+        };
+
+        /* new */
+        var o = new Object();
+        var d = new Date();
+
+        /* create */
+        var o1 = Object.create({x:1,y:1});      // o1继承了属性x，y
+        var o2 = Object.create(null);           //o2不继承任何属性和方法
+        var o3 = Object.create(Object.prototype);   //此种方法和{}和new Object（）一样
+
+        /* 通过原型继承创建一个新对象 */
+        function inherit(p){        //inherit可以防止对对象的意外修改，不能传入null，不能用第二可选参数
+            if(p == null) throw TypeError();        //p不能为null
+            if(Object.create)                       //如果有create属性直接使用
+                return Object.create(p);
+
+                var t = typeof p;                   //如果没有，进行下一步检测
+                if(t !=="object" && t !== "function")  throw TypeError();
+                function f(){};             //定义一个空构造函数，将其原型属性设置为p，使用f（）创建p的继承对象
+                f.prototype = p;
+                return new f();
+        }
+
+        /* for/in 遍历关联数组 */
+        function getvalue(portfolio){
+            var total = 0.0;
+            for(stock in portfolio){
+                var shares = portfolio[stock];      //得到每只股票的份额
+                var price = getquote(stock);        //查找股票价格
+                total += shares*price;
+            }
+            return total;
+        }
+
+        /* 继承 */
+        var o ={};
+        o.x = 1;
+        var p = inherit(o);
+        p.y = 2;
+        var q = inherit(p);
+        q.z = 3;
+        var s = q.toString();
+        q.x + q.y ;                 //3   x y分别继承o，p
+
+        /* 覆盖 */
+        var u = {r:1};
+        var c = inherit(u);
+        c.x = 1;
+        c.y = 2;
+        c.r = 3;
+        alert(u.r);       //  1  原型对象没有改变
+
+        /* delete */
+        o = {x:1};
+        delete o.x;         //true  已删除x
+        delete o.x;         //true  什么都没做
+        delete Object.prototype;    //不能删除，属性不可配置
+        var x = 1;      //全局变量
+        delete this.x;          //不能删除全局变量以及全局函数
+
+        /* in */
+        var o = {x:1};
+        "x" in o;       //true
+        "y" in o;       //false
+        "toString" in o;        //true
+
+        /* hasOwnProperty */
+        o.hasOwnProperty("x");      //true
+        o.hasOwnProperty("y");      //false
+        o.hasOwnProperty("toString");       //false 继承属性
+
+        /* propertyIsEnumerable */
+        var o = inherit({y:2});
+        o.x = 1;
+        o.propertyIsEnumerable("x");        //true     可枚举的自有属性x
+        o.propertyIsEnumerable("y");        //false  y是继承来的
+        Object.prototype.propertyIsEnumerable("toString");      //false  不可枚举
+        /*   !==   可以区分null   undefined     */
+
+        /**/
+    </script>
+</body>
+</html>
