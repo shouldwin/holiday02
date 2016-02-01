@@ -98,7 +98,79 @@
         Object.prototype.propertyIsEnumerable("toString");      //false  不可枚举
         /*   !==   可以区分null   undefined     */
 
-        /**/
+        /* 枚举属性 for/in */
+        for(p in o){        //跳过继承的属性
+            if(!o.hasOwnProperty(p))
+            continue;
+        }
+        for(p in o){        //跳过方法
+            if(typeof o[p] === "function")
+            continue;
+        }
+
+        /* 用来枚举属性的对象工具函数
+         * 把p中的可枚举属性复制到o中，并返回o
+          * 如果o和p中含有同名属性，则覆盖o中的属性
+          * 这个函数并不处理getter和setter以及复制属性
+          * */
+        function extend(o,p){
+            for(prop in p){
+                o[prop] = p[prop];
+            }
+            return o;
+        }
+
+        /*
+        * 将p中可枚举属性复制到o，并返回o
+        * 如果o，p中有同名属性，o中属性不受影响
+        * 这个函数并不处理getter和setter以及复制属性
+        * */
+        function merge(o,p){
+            for(prop in p){
+                if(o.hasOwnProperty[prop]) continue;    //过滤掉已经在o中存在的属性
+                o[prop] = p[prop];
+            }
+            return o;
+        }
+
+        /*
+        * 如果o中的属性在p中没有同名属性，则从o中删除这个属性，返回o
+        * */
+        function restrict(o,p){
+            for(prop in p){
+                if(!(prop in p))
+                delete o[prop];
+            }
+            return o;
+        }
+
+        /*
+         * 如果o中的属性在p中存在同名属性，则从o中删除这个属性，返回o
+         * */
+        function substract(o,p){
+            for(prop in p){
+                delete o[prop];
+            }
+            return o;
+        }
+
+        /* 返回一个拥有o，p属性的新对象，有重名属性使用p中的属性值*/
+        function union(o,p){
+            return extend(extend({},o),p);
+        }
+
+        /* 返回一个数组这个数组包含的是o中可枚举的自有属性的名字 */
+        function keys(o){
+            if(typeof o !== "object") throw TypeError();        //必须是对象
+            var result = [];
+            for(var prop in p){
+                if(o.hasOwnProperty(prop))
+                result.push(prop);
+            }
+            return result;
+        }
+
+
     </script>
 </body>
 </html>
