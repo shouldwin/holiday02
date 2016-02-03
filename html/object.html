@@ -268,7 +268,26 @@
         alert(p.isPrototypeOf(o));      //true      o继承自p
         alert(Object.prototype.isPrototypeOf(o));       //true  p继承自Object.prototype
 
-        /*      */
+        /*  获得对象的类  */
+        function classof(o){        //可传入任何类型的参数
+            if(o == null) return "Null";
+            if(o == undefined) return "Undefined";
+            return Object.prototype.toString().call(o).slice(8,-1);
+        }
+
+        /* Object.preventExtensions()一旦将对象转换为不可扩展，就不能变为可扩展了
+        * Object.isSealed() 可将对象属性，以及对象所有的自有属性都转换为不可配置
+        * Object.freeze()   除上面的特性，还可以将自有的数据属性设置为只读，检测对象是否冻结
+        * */
+        var o = Object.seal(Object.create(Object.freeze({x:1}),
+                {y:{value:2,writable:true}}));
+
+        /* 序列化对象 */
+        var o ={
+            x:1,y:{z:[false,null,""]}
+        };
+        alert(JSON.stringify(o));       //  {"x":1,"y":{"z":[false,null,""]}}
+        alert(JSON.parse(JSON.stringify(o)));
     </script>
 </body>
 </html>
