@@ -18,7 +18,7 @@ var largest = max(1,10,100,1000,3,2,7,10000);//-->10000
 function f(x){
     console.log(x);
     arguments[0] = null ;
-    console.log(x);  //-->null
+    console.log(x);     //-->null
 }//可通过argument获取到修改过的值
 
 //callee  指代当前正在执行的函数
@@ -30,3 +30,4 @@ function factorial(x){
         return x*arguments.callee(x-1);
     }
 }
+
