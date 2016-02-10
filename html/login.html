@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body{
+            background-image: url("04.jpg");
+            background-repeat: no-repeat;
+            background-position: 480px 130px;
+            margin-top: 50px;
+        }
+        .box{
+            margin:150px 500px;
+            width: 350px;
+            height: 200px;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+        .top{
+            width: 100%;
+            height: 50px;
+            background-color: #5fc7db;
+            color: #333333;
+            line-height: 45px;
+            text-align: center;
+            font-family: cursive;
+            font-size: 20px;
+            font-weight: bolder;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 0.5px #ffff00;
+            box-shadow:  1px 1px 0.5px #666666;
+            border-radius: 5px;
+        }
+        .img{
+            background-image: url("use.png");
+            width: 70px;
+            height: 64px;
+            float: left;
+        }
+        .login{
+            float: left;
+        }
+        input[type="text"]{
+            padding: 5px;
+            width: 200px;
+            height: 20px;
+            border-radius: 20% 30% 20% 30% ;
+            box-shadow: #666666;
+        }
+        input[type="password"]{
+            padding: 5px;
+            width: 200px;
+            height: 20px;
+            border-radius: 20% 30% 20% 30%;
+            box-shadow: #666666;
+        }
+        input[type="submit"]{
+            padding-right: 15px;
+            width: 100px;
+            height: 20px;
+            border-radius: 20% 30% 20% 30%;
+            box-shadow: #666666;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="top"> 用户登录</div>
+    <div class="img"></div>
+    <div class="login">
+        <input type="text" placeholder="用户名" name="name" autofocus required="required" autocomplete="on">
+        <br/><br/>
+        <input type="password" placeholder="密码" name="password" required="required">
+        <br/><br/>
+        <a href="#">忘记密码？</a>
+        <input type="submit" value="登录">
+    </div>
+</div>
+</body>
+</html>
