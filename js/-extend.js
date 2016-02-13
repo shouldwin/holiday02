@@ -1,6 +1,7 @@
 /**
  * Created by 陈莹 on 2016/2/13.
  */
+
         //将这些方法添加到Set类的原型对象中
 extend(Set.prototype,{
         // 将集合转换为字符串
