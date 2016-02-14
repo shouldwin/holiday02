@@ -43,6 +43,27 @@ Set.prototype.foreach = function (f,context) {
     if(this.values.hasOwnProperty(s))       //忽略继承的属性
         f.call(context,this.values[s]);     //调用f，传入value
 };
+
+Set.prototype.equals = function (that) {
+    if(this == that) return true;
+    //  如果that不是一个集合，则他和this不相等
+    // 也可通过that.constructor == that.constructor 来检查
+    //  null undefined 不能用于instanceof 运算
+    if(!(that instanceof Set)) return false;
+        //  如果两个集合大小不同，则他们不相同
+    if(this.size() != that.size()) return false;
+
+    // 检查两个集合中元素是否完全一样，如果不相等，则通过跑出异常来终止foreach循环
+    try{
+        this.foreach(function (v) {
+            if(!that.contains(v)) throw false;
+        });
+        return false;       // 所有元素匹配，两个集合相等
+    }catch(x){
+        if(x === false) return false;   //如果集合中有元素在另外一个集合中不存在
+        throw x;        // 重新抛出异常
+    }
+}
 //内部函数，将js中任意值和唯一的字符串对应起来
 Set._v2s = function (val) {
     switch (val){
@@ -70,3 +91,4 @@ Set._v2s = function (val) {
     }
 };
 Set._v2s.next = 100;        //设置初始id的值
+
