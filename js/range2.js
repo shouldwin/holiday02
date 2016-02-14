@@ -21,6 +21,18 @@ Range.prototype = {
     }
 };
 
+// 重写constructor属性，
+Range.prototype.constructor = Range;
+
+// 一个Range对象和其他不是Range的对象均不相等
+Range.prototype.equals = function (that) {
+    if(that == null) return false;
+    if(that.constructor !== Range) return false;
+    // 当且仅当两个端点相等，返回true
+    return this.from == that.from && this.to == that.to;
+        }
+
+
 var r = range(1,3);
 r.includes(2);
 r.foreach(Console.log);
