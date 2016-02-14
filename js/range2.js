@@ -30,8 +30,19 @@ Range.prototype.equals = function (that) {
     if(that.constructor !== Range) return false;
     // 当且仅当两个端点相等，返回true
     return this.from == that.from && this.to == that.to;
-        }
+};
 
+/*  根据下边界来对Range对象排序，如果下边界相等则比较上边界
+*   如果传入非range值 ，则抛出异常
+*   当且仅当this.equals(that) 时，才返回0
+*   */
+Range.prototype.compareTo = function (that) {
+    if(!(that instanceof Range))
+    throw new Error("Can't compare a Range with" + that);
+    var diff = this.from - that.from;   // 比较下边界
+    if(diff == 0) diff = this.to - that.to ;      // 如果想等，比较上边界
+    return diff;
+};
 
 var r = range(1,3);
 r.includes(2);
