@@ -22,3 +22,22 @@ NonNullSet.prototype.add = function () {
 
     return Set.prototype.add.apply(this,arguments);
 };
+
+
+var NonNullSet = (function () {
+    var superclass = Set;       // 定义并立即调用这个函数，仅指定父类
+    return superclass.extend(
+        function () {           // 构造函数
+            superclass.apply(this,arguments);
+        },
+        {           // 方法
+            add : function(){
+                // 检查参数
+                for(var i=0;i < arguments.length ; i++)
+                    if(arguments[i] == null)
+                        throw new Error("Can't add null or undefined");
+                return superclass.prototype.add.apply(this,arguments);
+            }
+        }
+    );
+}());
