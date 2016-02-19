@@ -86,7 +86,7 @@ var AbstractEnumerableSet = AbstractSet.extend(
     }
 );
 /* 非抽象子类 */
-var SungletonSet = AbstractEnumerableSet.extend(
+var SingletonSet = AbstractEnumerableSet.extend(
     function SingletonSet(member) {
         this.member = member;
     },
