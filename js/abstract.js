@@ -85,3 +85,87 @@ var AbstractEnumerableSet = AbstractSet.extend(
         }
     }
 );
+/* 非抽象子类 */
+var SungletonSet = AbstractEnumerableSet.extend(
+    function SingletonSet(member) {
+        this.member = member;
+    },
+    {
+        contains : function(x){ return x === this.member;  },
+        size : function(){ return 1; },
+        foreach : function(f,ctx){
+            f.call(ctx,this.member);
+        }
+    }
+);
+/* 抽象子类 */
+var AbstractWritableSet = AbstractEnumerableSet.extend(
+    function () {
+        throw new Error("Can't instantiate abstract classes");
+    },
+    {
+        add : abstractmethod,
+        remove : abstractmethod,
+        union : function(that){
+            var self = this;
+            that.foreach(
+                function (v) {
+                    self.add(v);
+                }
+            );
+            return this;
+        },
+        intersection : function(that){
+            var self = this;
+            that.foreach(
+                function (v) {
+                    if(!that.contains(v))
+                        self.remove(v);
+                }
+            );
+            return this;
+        },
+        difference : function(that){
+            var self = this;
+            that.foreach(
+                function (v) {
+                    self.remove(v);
+                }
+            );
+            return this;
+        }
+    }
+);
+/*
+* 非抽象子类
+* 他以数组的形式表示集合中的元素
+* 对于他的contains（）方法使用了数组的线性查找
+* */
+var ArraySet = AbstractWritableSet.extend(
+    function ArraySet() {
+        this.values = [];
+        this.add.apply(this,arguments);
+    },
+    {
+        contains : function (v) {
+            return this.values.indexOf(v) != -1;
+        },
+        size : function(){ return this.values.length;},
+        foreach : function(f,c){ this.values.forEach(f,c); },
+        add : function(){
+            for(var i=0;i<arguments.length;i++){
+                var arg = arguments[i];
+                if(!this.contains(arg)) this.values.push(arg);
+            }
+            return this;
+        },
+        remove : function(){
+            for(var i=0;i<arguments.length;i++){
+                var p = this.values.indexOf(arguments[i]);
+                if(p == -1) continue;
+                this.values.splice(p,1);
+            }
+            return this;
+        }
+    }
+);
